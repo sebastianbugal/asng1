@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en" dir="LTR">
+    <head>
+        <meta charset="utf-8">
+        <title>My Webpage</title>
+        <style media="screen">
+            .on{
+                background-color: rgb(65, 65, 65);
+            }
+            .wrong{
+                background-color: rgb(238, 87, 87);
+            }
+            table{
+                color: rgb(65, 65, 65);
+                border:1px solid;
+                border-collapse: collapse;
+                empty-cells:show;
+            }
+            table.center {
+                 margin-left:auto; 
+                 margin-right:auto;
+            }
+            td{
+                color: rgb(65, 65, 65);
+                border:1px solid;
+                width: 20px;
+
+            }
+            tr{
+                color: rgb(65, 65, 65);
+                border:1px solid;
+                height:20px;
+            }
+            th{
+                color: rgb(65, 65, 65);
+                border:1px solid;   
+                height:20px;
+                width: 20px;
+
+            }
+            button {
+                background-color: rgb(255, 255, 255); /* Green */
+                border: 2px solid rgb(34, 34, 34); /* Green */
+                color: rgb(46, 46, 46);
+                padding: 15px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                transition-duration: 0.4s;
+                cursor: pointer;
+
+            }   
+            button:hover {
+                background-color: rgb(107, 107, 107); /* Green */
+                color: white;
+            }
+
+            button.center{
+                
+                margin: 0 auto;
+                display: block;
+
+            }
+        </style>
+
+       
+            
+    </head>
+    <body>
+        <main>
+            <table id="table" class="center">
+                <tr id="rh">
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr >
+
+                <tr id="r1">
+                    <th id="r1h"></th>
+                    <td id="c11"></td>
+                    <td id="c12"></td>
+                    <td id="c13"></td>
+                    <td id="c14"></td>
+                    <td id="c15"></td>
+                    <td id="c16"></td>
+                    <td id="c17"></td>
+                    <td id="c18"></td>
+                    <td id="c19"></td>
+                    <td id="c110"></td>
+                    <td id="c111"></td>
+                    <td id="c112"></td>
+                    <td id="c113"></td>
+                    <td id="c114"></td>
+                    <td id="c115"></td>
+                </tr>
+
+                <tr id="r2">
+                    <th id="r2h"></th>
+                    <td id="c21"></td>
+                    <td id="c22"></td>
+                    <td id="c23"></td>
+                    <td id="c24"></td>
+                    <td id="c25"></td>
+                    <td id="c26"></td>
+                    <td id="c27"></td>
+                    <td id="c28"></td>
+                    <td id="c29"></td>
+                    <td id="c210"></td>
+                    <td id="c211"></td>
+                    <td id="c212"></td>
+                    <td id="c213"></td>
+                    <td id="c214"></td>
+                    <td id="c215"></td>
+                </tr>
+                <tr id="r3">
+                    <th id="r3h"></th>
+                    <td id="c31"></td>
+                    <td id="c32"></td>
+                    <td id="c33"></td>
+                    <td id="c34"></td>
+                    <td id="c35"></td>
+                    <td id="c36"></td>
+                    <td id="c37"></td>
+                    <td id="c38"></td>
+                    <td id="c39"></td>
+                    <td id="c310"></td>
+                    <td id="c311"></td>
+                    <td id="c312"></td>
+                    <td id="c313"></td>
+                    <td id="c314"></td>
+                    <td id="c315"></td>
+                </tr>
+                <tr id="r4">
+                    <th id="r4h"></th>
+                    <td id="c41"></td>
+                    <td id="c42"></td>
+                    <td id="c43"></td>
+                    <td id="c44"></td>
+                    <td id="c45"></td>
+                    <td id="c46"></td>
+                    <td id="c47"></td>
+                    <td id="c48"></td>
+                    <td id="c49"></td>
+                    <td id="c410"></td>
+                    <td id="c411"></td>
+                    <td id="c412"></td>
+                    <td id="c413"></td>
+                    <td id="c414"></td>
+                    <td id="c415"></td>
+                </tr>
+                <tr id="r5">
+                    <th id="r5h"></th>
+                    <td id="c51"></td>
+                    <td id="c52"></td>
+                    <td id="c53"></td>
+                    <td id="c54"></td>
+                    <td id="c55"></td>
+                    <td id="c56"></td>
+                    <td id="c57"></td>
+                    <td id="c58"></td>
+                    <td id="c59"></td>
+                    <td id="c510"></td>
+                    <td id="c511"></td>
+                    <td id="c512"></td>
+                    <td id="c513"></td>
+                    <td id="c514"></td>
+                    <td id="c515"></td>
+                </tr>
+                <tr id="r6">
+                    <th id="r6h"></th>
+                    <td id="c61"></td>
+                    <td id="c62"></td>
+                    <td id="c63"></td>
+                    <td id="c64"></td>
+                    <td id="c65"></td>
+                    <td id="c66"></td>
+                    <td id="c67"></td>
+                    <td id="c68"></td>
+                    <td id="c69"></td>
+                    <td id="c610"></td>
+                    <td id="c611"></td>
+                    <td id="c612"></td>
+                    <td id="c613"></td>
+                    <td id="c614"></td>
+                    <td id="c615"></td>
+                </tr>
+                <tr id="r7">
+                    <th id="r7h"></th>
+                    <td id="c71"></td>
+                    <td id="c72"></td>
+                    <td id="c73"></td>
+                    <td id="c74"></td>
+                    <td id="c75"></td>
+                    <td id="c76"></td>
+                    <td id="c77"></td>
+                    <td id="c78"></td>
+                    <td id="c79"></td>
+                    <td id="c710"></td>
+                    <td id="c711"></td>
+                    <td id="c712"></td>
+                    <td id="c713"></td>
+                    <td id="c714"></td>
+                    <td id="c715"></td>
+                </tr>
+                <tr id="r8">
+                    <th id="r8h"></th>
+                    <td id="c81"></td>
+                    <td id="c82"></td>
+                    <td id="c83"></td>
+                    <td id="c84"></td>
+                    <td id="c85"></td>
+                    <td id="c86"></td>
+                    <td id="c87"></td>
+                    <td id="c88"></td>
+                    <td id="c98"></td>
+                    <td id="c810"></td>
+                    <td id="c811"></td>
+                    <td id="c812"></td>
+                    <td id="c813"></td>
+                    <td id="c814"></td>
+                    <td id="c815"></td>
+                </tr>
+                <tr id="r9">
+                    <th id="r9h"></th>
+                    <td id="c91"></td>
+                    <td id="c92"></td>
+                    <td id="c93"></td>
+                    <td id="c94"></td>
+                    <td id="c95"></td>
+                    <td id="c96"></td>
+                    <td id="c97"></td>
+                    <td id="c98"></td>
+                    <td id="c99"></td>
+                    <td id="c910"></td>
+                    <td id="c911"></td>
+                    <td id="c912"></td>
+                    <td id="c913"></td>
+                    <td id="c914"></td>
+                    <td id="c915"></td>
+                </tr>
+                <tr id="r10">
+                    <th id="r10h"></th>
+                    <td id="c101"></td>
+                    <td id="c102"></td>
+                    <td id="c103"></td>
+                    <td id="c104"></td>
+                    <td id="c105"></td>
+                    <td id="c106"></td>
+                    <td id="c107"></td>
+                    <td id="c108"></td>
+                    <td id="c109"></td>
+                    <td id="c1010"></td>
+                    <td id="c1011"></td>
+                    <td id="c1012"></td>
+                    <td id="c1013"></td>
+                    <td id="c1014"></td>
+                    <td id="c1015"></td>
+                </tr>
+                <tr id="r11">
+                    <th id="r11h"></th>
+                    <td id="c111"></td>
+                    <td id="c112"></td>
+                    <td id="c113"></td>
+                    <td id="c114"></td>
+                    <td id="c115"></td>
+                    <td id="c116"></td>
+                    <td id="c117"></td>
+                    <td id="c118"></td>
+                    <td id="c119"></td>
+                    <td id="c1110"></td>
+                    <td id="c1111"></td>
+                    <td id="c1112"></td>
+                    <td id="c1113"></td>
+                    <td id="c1114"></td>
+                    <td id="c1115"></td>
+                </tr>
+                <tr id="r12">
+                    <th id="r12h"></th>
+                    <td id="c121"></td>
+                    <td id="c122"></td>
+                    <td id="c123"></td>
+                    <td id="c124"></td>
+                    <td id="c125"></td>
+                    <td id="c126"></td>
+                    <td id="c127"></td>
+                    <td id="c128"></td>
+                    <td id="c129"></td>
+                    <td id="c1210"></td>
+                    <td id="c1211"></td>
+                    <td id="c1212"></td>
+                    <td id="c1213"></td>
+                    <td id="c1214"></td>
+                    <td id="c1215"></td>
+                </tr>
+                <tr id="r13">
+                    <th id="r13h"></th>
+                    <td id="c131"></td>
+                    <td id="c132"></td>
+                    <td id="c133"></td>
+                    <td id="c134"></td>
+                    <td id="c135"></td>
+                    <td id="c136"></td>
+                    <td id="c137"></td>
+                    <td id="c138"></td>
+                    <td id="c139"></td>
+                    <td id="c1310"></td>
+                    <td id="c1311"></td>
+                    <td id="c1312"></td>
+                    <td id="c1313"></td>
+                    <td id="c1314"></td>
+                    <td id="c1315"></td>
+                </tr>
+                <tr id="r14">
+                    <th id="r14h"></th>
+                    <td id="c141"></td>
+                    <td id="c142"></td>
+                    <td id="c143"></td>
+                    <td id="c144"></td>
+                    <td id="c145"></td>
+                    <td id="c146"></td>
+                    <td id="c147"></td>
+                    <td id="c148"></td>
+                    <td id="c149"></td>
+                    <td id="c1410"></td>
+                    <td id="c1411"></td>
+                    <td id="c1412"></td>
+                    <td id="c1413"></td>
+                    <td id="c1414"></td>
+                    <td id="c1415"></td>
+                </tr>
+                <tr id="r15">
+                    <th id="r15h"></th>
+                    <td id="c151"></td>
+                    <td id="c152"></td>
+                    <td id="c153"></td>
+                    <td id="c154"></td>
+                    <td id="c155"></td>
+                    <td id="c156"></td>
+                    <td id="c157"></td>
+                    <td id="c158"></td>
+                    <td id="c159"></td>
+                    <td id="c1510"></td>
+                    <td id="c1511"></td>
+                    <td id="c1512"></td>
+                    <td id="c1513"></td>
+                    <td id="c1514"></td>
+                    <td id="c1515"></td>
+                </tr>
+                </table>
+                <button type="button" class="center" onclick="reset()">Reset</button>
+                <button type="button" onclick="show_sol()" class="center">Show Solution</button>
+
+
+                <script type="text/javascript">
+                    var lives=0;
+                                        game_board=[
+                    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,1,0,1,1,1,1,0,0,0,0,0,0,0,0],
+                    [0,0,1,0,0,0,0,1,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                ]
+                    function reset(){
+                        var cells = document.querySelectorAll("td");
+                        for (var i = 0; i < cells.length; i++) {
+                            cells[i].className=''
+                        }
+                    }
+                    function show_sol(){
+                        var cells = document.querySelectorAll("td");
+                        var x;
+                        var y;
+                        for (var i = 0; i < cells.length; i++) {
+                            x = Math.floor(i % 15);
+                            y = Math.floor(i / 15);
+                            if(game_board[y][x]==1){
+                                cells[i].className='on';
+                            }
+                            else{
+                                cells[i].className='';
+                            }
+                        }
+                    }
+                    
+                    
+                    var cells = document.querySelectorAll("td");
+                    for (var i = 0; i < cells.length; i++) {
+
+                        cells[i].addEventListener("click", function() {
+                            var cells = document.querySelectorAll("td");
+                            var x;
+                            var y;
+                            for (var i = 0; i < cells.length; i++) {
+                                console.log(cells[i].id)
+                                console.log(this.id)
+                                if(cells[i].id==this.id){
+                                    x = Math.floor(i % 15)
+                                    var temp=(i/15)
+                                    y = Math.floor(i / 15)
+                                    console.log(x);
+                                    console.log(y);
+                                    break;
+                                }
+                            }
+                            var cor=game_board[y][x]
+                            if(cor==1){
+                                if(this.className=='on'){
+                                this.className='';
+                            }
+                            else{
+                                this.className= "on";
+                            }
+                            }
+                            else {
+                                this.className= "wrong";
+                                if(cor==1){
+                                    makebg(this);
+                                }
+                            }
+
+                        });
+                    }
+                    function makebg(){
+
+                    }
+                    </script>
+         
+                <!-- <form action="index.html" method="post">
+                <input type="text" name="fname" value="" placeholder="name">
+                <input type="password" name="pwd"value="">
+                <input type="email" name="" value="">
+            </form> -->
+            </p>
+        </main>
+    </body>
+</html>
