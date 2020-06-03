@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" dir="LTR">
     <head>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
         <meta charset="utf-8">
         <title>My Webpage</title>
         <style media="screen">
+            
             .on{
                 background-color: rgb(65, 65, 65);
             }
@@ -15,6 +17,7 @@
                 border:1px solid;
                 border-collapse: collapse;
                 empty-cells:show;
+                font-family: 'Open Sans', sans-serif;
             }
             table.center {
                  margin-left:auto; 
@@ -24,8 +27,14 @@
                 color: rgb(65, 65, 65);
                 border:1px solid;
                 width: 20px;
-
             }
+            th{
+                word-wrap: break-word;         /* All browsers since IE 5.5+ */
+                overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
+                white-space:pre-wrap;
+            }
+            
+
             tr{
                 color: rgb(65, 65, 65);
                 border:1px solid;
@@ -367,8 +376,9 @@
 
                 <script type="text/javascript">
                     var lives=0;
+
                                         game_board=[
-                    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                     [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,1,0,1,1,1,1,0,0,0,0,0,0,0,0],
@@ -384,12 +394,66 @@
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 ]
+                
+                var th=document.querySelectorAll("th");
+                for(var i =0; i<th.length; i++){
+                    console.log(i);
+                    var arr=[];
+                    var ind=0;
+                        if(i==0){
+                            continue;
+                        }
+                        else if(i<=15){
+                            for (var j = 0; j < game_board[1].length; j++) {
+                                console.log(game_board[j][i-1]);
+                                if(game_board[j][i-1]==1 && game_board[j+1][i-1]!=1){
+                                    ind++;
+                                    arr.push(ind);
+                                    ind=0;}
+                                else if(game_board[j][i-1]==1){
+                                    ind++;
+                                }
+                            }
+                            if(ind>0){
+                                arr.push(ind);
+                            }
+                            if(arr!=null){
+                                for(var t=0; t<arr.length; t++){
+                                    th[i].textContent=th[i].textContent+" "+arr[t];
+                                }   
+                            }
+                            else{
+                                for (var j = 0; j < game_board[1].length; j++) {
+                                console.log(game_board[i-1][j]);
+                                if(game_board[i-1][j]==1 && game_board[i+1][j-1]!=1){
+                                    ind++;
+                                    arr.push(ind);
+                                    ind=0;}
+                                else if(game_board[i][j-1]==1){
+                                    ind++;
+                                }
+                            }
+                            if(ind>0){
+                                arr.push(ind);
+                                console.log(arr[0]);
+                            }
+                            if(arr!=null){
+                                for(var t=0; t<arr.length; t++){
+                                    th[i].textContent=th[i].textContent+" "+arr[t];
+                                }   
+                            }
+
+                            }
+                        }
+
+                }
                     function reset(){
                         var cells = document.querySelectorAll("td");
                         for (var i = 0; i < cells.length; i++) {
                             cells[i].className=''
                         }
                     }
+
                     function show_sol(){
                         var cells = document.querySelectorAll("td");
                         var x;
