@@ -27,26 +27,28 @@
                 color: rgb(65, 65, 65);
                 border:1px solid;
                 width: 20px;
+                height:20px;
             }
             th{
-                word-wrap: break-word;         /* All browsers since IE 5.5+ */
-                overflow-wrap: break-word;     /* Renamed property in CSS3 draft spec */
+                word-wrap: break-word;         
+                overflow-wrap: break-word;     
                 white-space:pre-wrap;
+                color: rgb(65, 65, 65);
+                border:1px solid;   
             }
             
 
             tr{
                 color: rgb(65, 65, 65);
                 border:1px solid;
-                height:20px;
+                
             }
-            th{
-                color: rgb(65, 65, 65);
-                border:1px solid;   
+            /* th{
+
                 height:20px;
                 width: 20px;
 
-            }
+            } */
             button {
                 background-color: rgb(255, 255, 255); /* Green */
                 border: 2px solid rgb(34, 34, 34); /* Green */
@@ -99,7 +101,7 @@
                 </tr >
 
                 <tr id="r1">
-                    <th id="r1h"></th>
+                    <th id="r1h" style=""></th>
                     <td id="c11"></td>
                     <td id="c12"></td>
                     <td id="c13"></td>
@@ -118,7 +120,7 @@
                 </tr>
 
                 <tr id="r2">
-                    <th id="r2h"></th>
+                    <th id="r2h" style=""></th>
                     <td id="c21"></td>
                     <td id="c22"></td>
                     <td id="c23"></td>
@@ -136,7 +138,7 @@
                     <td id="c215"></td>
                 </tr>
                 <tr id="r3">
-                    <th id="r3h"></th>
+                    <th id="r3h" style=""></th>
                     <td id="c31"></td>
                     <td id="c32"></td>
                     <td id="c33"></td>
@@ -154,7 +156,7 @@
                     <td id="c315"></td>
                 </tr>
                 <tr id="r4">
-                    <th id="r4h"></th>
+                    <th id="r4h" style=""></th>
                     <td id="c41"></td>
                     <td id="c42"></td>
                     <td id="c43"></td>
@@ -172,7 +174,7 @@
                     <td id="c415"></td>
                 </tr>
                 <tr id="r5">
-                    <th id="r5h"></th>
+                    <th id="r5h" style=""></th>
                     <td id="c51"></td>
                     <td id="c52"></td>
                     <td id="c53"></td>
@@ -281,21 +283,21 @@
                 </tr>
                 <tr id="r11">
                     <th id="r11h"></th>
-                    <td id="c111"></td>
-                    <td id="c112"></td>
-                    <td id="c113"></td>
-                    <td id="c114"></td>
-                    <td id="c115"></td>
-                    <td id="c116"></td>
-                    <td id="c117"></td>
-                    <td id="c118"></td>
-                    <td id="c119"></td>
-                    <td id="c1110"></td>
-                    <td id="c1111"></td>
-                    <td id="c1112"></td>
-                    <td id="c1113"></td>
-                    <td id="c1114"></td>
-                    <td id="c1115"></td>
+                    <td id="c11-1"></td>
+                    <td id="c11-2"></td>
+                    <td id="c11-3"></td>
+                    <td id="c11-4"></td>
+                    <td id="c11-5"></td>
+                    <td id="c11-6"></td>
+                    <td id="c11-7"></td>
+                    <td id="c11-8"></td>
+                    <td id="c11-9"></td>
+                    <td id="c11-10"></td>
+                    <td id="c11-11"></td>
+                    <td id="c11-12"></td>
+                    <td id="c11-13"></td>
+                    <td id="c11-14"></td>
+                    <td id="c11-15"></td>
                 </tr>
                 <tr id="r12">
                     <th id="r12h"></th>
@@ -388,24 +390,29 @@
                     [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,1,1,1,1,0,0,0,0,0,0,0,0],
-                    [0,0,0,0,0,1,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+                    [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
                 ]
                 
                 var th=document.querySelectorAll("th");
                 for(var i =0; i<th.length; i++){
-                    console.log(i);
                     var arr=[];
                     var ind=0;
-                        if(i==0){
+                        if(i==0 || i==16){
                             continue;
                         }
                         else if(i<=15){
                             for (var j = 0; j < game_board[1].length; j++) {
-                                console.log(game_board[j][i-1]);
+                                if(j+1==game_board[1].length){
+                                    if(game_board[j][i-1]==1){
+                                        ind++;
+                                        arr.push(ind);
+                                        ind=0;}
+                                    }
+                                else{
                                 if(game_board[j][i-1]==1 && game_board[j+1][i-1]!=1){
                                     ind++;
                                     arr.push(ind);
@@ -414,6 +421,7 @@
                                     ind++;
                                 }
                             }
+                            }
                             if(ind>0){
                                 arr.push(ind);
                             }
@@ -422,18 +430,30 @@
                                     th[i].textContent=th[i].textContent+" "+arr[t];
                                 }   
                             }
-                            else{
-                                for (var j = 0; j < game_board[1].length; j++) {
-                                console.log(game_board[i-1][j]);
-                                if(game_board[i-1][j]==1 && game_board[i+1][j-1]!=1){
+
+                        }
+                        else{
+
+                            for (var j = 0; j < game_board[1].length; j++) {
+                                if(j+1==game_board[1].length){
+                                    if(game_board[i-16][j]==1){
+                                        ind++;
+                                        arr.push(ind);
+                                        ind=0;}
+
+                                    }
+                                    else{
+                                if(game_board[i-16][j]==1 && game_board[i-16][j+1]!=1){
                                     ind++;
                                     arr.push(ind);
                                     ind=0;}
-                                else if(game_board[i][j-1]==1){
+                                else if(game_board[i-16][j]==1){
                                     ind++;
                                 }
+                                    }
                             }
                             if(ind>0){
+                                console.log(ind);
                                 arr.push(ind);
                                 console.log(arr[0]);
                             }
@@ -442,9 +462,9 @@
                                     th[i].textContent=th[i].textContent+" "+arr[t];
                                 }   
                             }
+                                
 
                             }
-                        }
 
                 }
                     function reset(){
