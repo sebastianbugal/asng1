@@ -5,7 +5,10 @@
         <meta charset="utf-8">
         <title>My Webpage</title>
         <style media="screen">
-            
+
+            .done{
+                background-color: rgb(39, 206, 48);
+            }
             .on{
                 background-color: rgb(65, 65, 65);
             }
@@ -20,6 +23,7 @@
                 font-family: 'Open Sans', sans-serif;
             }
             table.center {
+                
                  margin-left:auto; 
                  margin-right:auto;
             }
@@ -50,6 +54,7 @@
 
             } */
             button {
+
                 background-color: rgb(255, 255, 255); /* Green */
                 border: 2px solid rgb(34, 34, 34); /* Green */
                 color: rgb(46, 46, 46);
@@ -62,6 +67,10 @@
                 cursor: pointer;
 
             }   
+            #buttons { display: inline-block; padding:10px; width:50%;};
+
+            #buttons .button { padding:10px;}
+
             button:hover {
                 background-color: rgb(107, 107, 107); /* Green */
                 color: white;
@@ -372,19 +381,19 @@
                     <td id="c1515"></td>
                 </tr>
                 </table>
+
                 <button type="button" class="center" onclick="reset()">Reset</button>
                 <button type="button" onclick="show_sol()" class="center">Show Solution</button>
-
 
                 <script type="text/javascript">
                     var lives=0;
 
                                         game_board=[
                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-                    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                    [0,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
+                    [0,1,1,0,1,1,1,1,1,1,1,1,1,1,0],
                     [0,1,0,1,1,1,1,0,0,0,0,0,0,0,0],
-                    [0,0,1,0,0,0,0,1,0,0,0,0,0,0,0],
+                    [0,0,1,0,0,1,1,1,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
@@ -489,12 +498,38 @@
                             }
                         }
                     }
+
+                    function check_cor(){
+                        console.log('lol')
+                        var cells = document.querySelectorAll("td");
+                        var x;
+                        var y;
+                        var done=false;
+                        for (var i = 0; i < cells.length; i++) {
+                            x = Math.floor(i % 15);
+                            y = Math.floor(i / 15);
+                            if(game_board[y][x]==1 && cells[i].className=='on'){
+                                done=true;
+                            }
+                            else if(game_board[y][x]==1 && cells[i].className!='on'){
+                                done=false;
+                                break;
+                            }
+                           
+                        }
+                        if(done==true){
+                            for (var i = 0; i < cells.length; i++) {
+                            cells[i].className='done'
+                            }
+                        }
+                    }
                     
                     
                     var cells = document.querySelectorAll("td");
                     for (var i = 0; i < cells.length; i++) {
 
-                        cells[i].addEventListener("click", function() {
+                        cells[i].addEventListener("click", function(){
+                            var i=t;
                             var cells = document.querySelectorAll("td");
                             var x;
                             var y;
@@ -525,9 +560,11 @@
                                     makebg(this);
                                 }
                             }
+                            check_cor();
 
                         });
                     }
+                    
                     function makebg(){
 
                     }
