@@ -15,6 +15,10 @@
             .wrong{
                 background-color: rgb(238, 87, 87);
             }
+            div.center{
+                margin: 0 auto;
+                display: block;
+            }
             table{
                 color: rgb(65, 65, 65);
                 border:1px solid;
@@ -28,12 +32,33 @@
                  margin-left:auto; 
                  margin-right:auto;
             }
-            p{
+            p{ 
                 text-align: center;
                 font-family: 'Open Sans', sans-serif;
                 letter-spacing: 0em;
                 color:rgb(37, 177, 95);
+            }
+            .win{
+                text-align: center;
+                font-family: 'Open Sans', sans-serif;
+                letter-spacing: 0em;
+                color:rgb(37, 177, 95);
+            }
+            #loss_con{
+                text-align: center;
+                font-family: 'Open Sans', sans-serif;
+                letter-spacing: 0em;
+                color:rgb(177, 88, 37);
+            }
+            span{
+                color: rgb(65, 65, 65);
+                font-family: 'Open Sans', sans-serif;
+                letter-spacing: 0em;
 
+            }
+            span.center{
+                margin: 0 auto;
+                display: block;
             }
             p.center{
                 margin: 0 auto;
@@ -103,6 +128,7 @@
     </head>
     <body>
         <main>
+            <p id="lives">Lives:</p>
             <table id="table" class="center">
                 <tr id="rh">
                     <th></th>
@@ -396,13 +422,26 @@
                 </tr>
                 </table>
                 <strong><p class="center" id="win_con"></p></strong>
+                <strong><p class="center" id="loss_con"></p></strong>
 
+                <input type='file' id='file_up' hidden='hidden'/>
+                
+                <button type="button" id="button_up" class="center">CHOOSE file</button>
+    
 
                 <button type="button" class="center" onclick="reset()">Reset</button>
                 <button type="button" onclick="show_sol()" class="center">Show Solution</button>
 
                 <script type="text/javascript">
-                    var lives=0;
+                    btn_real=document.getElementById("button_up");
+                    btn_cl=document.getElementById('file_up');
+                    text_btn=document.getElementById("up_text");
+
+                    btn_real.addEventListener("click",function(){btn_cl.click();});
+
+                    var lives=3;
+                    liv=document.getElementById("lives")
+                    liv.textContent="Lives: "+lives;
 
                                         game_board=[
                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -422,10 +461,10 @@
                     [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
                 ]
                 
-                var th=document.querySelectorAll("th");
-                for(var i =0; i<th.length; i++){
-                    var arr=[];
-                    var ind=0;
+                    var th=document.querySelectorAll("th");
+                    for(var i =0; i<th.length; i++){
+                        var arr=[];
+                        var ind=0;
                         if(i==0 || i==16){
                             continue;
                         }
@@ -446,7 +485,7 @@
                                     ind++;
                                 }
                             }
-                            }
+                        }
                             if(ind>0){
                                 arr.push(ind);
                             }
@@ -455,10 +494,8 @@
                                     th[i].textContent=th[i].textContent+" "+arr[t];
                                 }   
                             }
-
                         }
                         else{
-
                             for (var j = 0; j < game_board[1].length; j++) {
                                 if(j+1==game_board[1].length){
                                     if(game_board[i-16][j]==1){
@@ -478,27 +515,29 @@
                                     }
                             }
                             if(ind>0){
-                                console.log(ind);
                                 arr.push(ind);
-                                console.log(arr[0]);
                             }
                             if(arr!=null){
                                 for(var t=0; t<arr.length; t++){
                                     th[i].textContent=th[i].textContent+" "+arr[t];
                                 }   
                             }
-                                
+                        }
 
-                            }
-
-                }
+                    }
                     function reset(){
                         var cells = document.querySelectorAll("td");
                         for (var i = 0; i < cells.length; i++) {
                             cells[i].className=''
                         }
-                        win=document.getElementById("win_con")
-                        win.textContent=""
+                        win=document.getElementById("win_con");
+                        win.textContent="";
+                        loss=document.getElementById("loss_con");
+                        loss.textContent="";
+                        liv=document.getElementById("lives")
+                        liv.textContent="Lives: "+lives;
+
+
                     }
 
                     function show_sol(){
@@ -517,6 +556,7 @@
                         }
                         win=document.getElementById("win_con")
                         win.textContent="PUZZLE COMPLETE CONGRATULATIONS!"
+                        win.className=="win center";
                         for (var i = 0; i < cells.length; i++) {
                             if(cells[i].className=='on'){
                                 cells[i].className='done'
@@ -525,7 +565,6 @@
                     }
 
                     function check_cor(){
-                        console.log('lol')
                         var cells = document.querySelectorAll("td");
                         var x;
                         var y;
@@ -540,11 +579,11 @@
                                 done=false;
                                 break;
                             }
-                           
                         }
                         if(done==true){
-                            win=document.getElementById("win_con")
-                            win.textContent="PUZZLE COMPLETE CONGRATULATIONS!"
+                            win=document.getElementById("win_con");
+                            win.textContent="PUZZLE COMPLETE CONGRATULATIONS!";
+                            win.className=="win center";
                             for (var i = 0; i < cells.length; i++) {
                                 if(cells[i].className=='on'){
                                     cells[i].className='done'
@@ -552,7 +591,7 @@
                             }
                         }
                     }
-                    
+
                     var cells = document.querySelectorAll("td");
                     for (var i = 0; i < cells.length; i++) {
 
@@ -562,14 +601,10 @@
                             var x;
                             var y;
                             for (var i = 0; i < cells.length; i++) {
-                                console.log(cells[i].id)
-                                console.log(this.id)
                                 if(cells[i].id==this.id){
                                     x = Math.floor(i % 15)
                                     var temp=(i/15)
                                     y = Math.floor(i / 15)
-                                    console.log(x);
-                                    console.log(y);
                                     break;
                                 }
                             }
@@ -584,6 +619,21 @@
                             }
                             else {
                                 this.className= "wrong";
+                                liv=document.getElementById("lives")
+                                if(lives>=1){
+                                    lives--;
+                                    liv.textContent="Lives: "+lives;
+                                    console.log(" sdfkiosdjfosdjfosdj")
+                                }
+                                else{
+                                    lives--;
+                                    liv.textContent="Lives: "+lives;
+                                    loss=document.getElementById("loss_con");
+                                    loss_con.textContent="You Lost Try Again";
+                                    setTimeout(function() {reset()}, 2000);
+                                    
+                                    lives=3
+                                }
                                 if(cor==1){
                                     makebg(this);
                                 }
@@ -591,6 +641,7 @@
                             check_cor();
 
                         });
+                        
                     }
                     
                     function makebg(){
