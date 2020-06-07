@@ -71,11 +71,14 @@
                 height:20px;
             }
             th{
-                word-wrap: break-word;         
-                overflow-wrap: break-word;     
-                white-space:pre-wrap;
+                word-wrap: break-word;          
+                 overflow-wrap: break-word;    
+             white-space:pre-wrap; 
+          
+                
                 color: rgb(65, 65, 65);
                 border:1px solid;   
+
             }
             /* th.size_max{
                 width=
@@ -114,7 +117,7 @@
 
             .btn{
 
-                width: 677px;
+                width: 800px;
 	            height: 100px;
                 left: 0;
                 right: 0;
@@ -154,7 +157,7 @@
                 </tr >
 
                 <tr id="r1">
-                    <th id="r1h" style=""></th>
+                    <th id="r1h" ></th>
                     <td id="c11"></td>
                     <td id="c12"></td>
                     <td id="c13"></td>
@@ -173,7 +176,7 @@
                 </tr>
 
                 <tr id="r2">
-                    <th id="r2h" style=""></th>
+                    <th id="r2h"></th>
                     <td id="c21"></td>
                     <td id="c22"></td>
                     <td id="c23"></td>
@@ -191,7 +194,7 @@
                     <td id="c215"></td>
                 </tr>
                 <tr id="r3">
-                    <th id="r3h" style=""></th>
+                    <th id="r3h" ></th>
                     <td id="c31"></td>
                     <td id="c32"></td>
                     <td id="c33"></td>
@@ -209,7 +212,7 @@
                     <td id="c315"></td>
                 </tr>
                 <tr id="r4">
-                    <th id="r4h" style=""></th>
+                    <th id="r4h"></th>
                     <td id="c41"></td>
                     <td id="c42"></td>
                     <td id="c43"></td>
@@ -227,7 +230,7 @@
                     <td id="c415"></td>
                 </tr>
                 <tr id="r5">
-                    <th id="r5h" style=""></th>
+                    <th id="r5h" ></th>
                     <td id="c51"></td>
                     <td id="c52"></td>
                     <td id="c53"></td>
@@ -438,12 +441,48 @@
                 <button type="button" class="center" onclick="reset()">Reset</button>
                 <button type="button" onclick="show_sol()" >Show Solution</button>
                 <button type="button" onclick="reset_og()">Reset Original Puzzle</button>
+                <button type="button" onclick="enter_build()">Create Puzzle</button>
+                <button type="button" onclick="save_build()">Save and Play Puzzle</button>
+                
                 </div>
 
+                
 
                 <script type="text/javascript">
                     var temp_dat;
                     var t;
+                    var o=[ [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
+                    var n=[
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+                ];
                     var og=[
                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                     [0,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
@@ -461,9 +500,31 @@
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
                 ];
-                    function reset_og(){
-                        game_board=og;
+                    function save_build(){
+                        var new_board;
+                        var cells = document.querySelectorAll("td");
+                        var x;
+                        var y;
+                        var done=false;
+                        game_board=o;
+                        for (var i = 0; i < cells.length; i++) {
+                            x = Math.floor(i % 15);
+                            y = Math.floor(i / 15);
+                            if(cells[i].className=='on'){
+                                game_board[y][x]=1
+                            }
+                        }
+                        reset();
                         setup();
+                    }
+                    function enter_build(){
+                        game_board=n;
+                        setup1();
+                    }
+                    function reset_og(){
+                        game_board=0;
+                        setup();
+                        gameboard=n;
                     }
                 
                         document.getElementById("file_up").addEventListener('change', function(){
@@ -541,7 +602,12 @@
                                 }
                                 if(arr!=null){
                                     for(var t=0; t<arr.length; t++){
-                                        th[i].textContent=th[i].textContent+" "+arr[t];
+                                        if(th[i].textContent==null){
+                                            console.log("it works")
+                                             th[i].textContent=arr[t]
+                                        }
+                                        else{
+                                        th[i].textContent=th[i].textContent+" "+arr[t];}
                                     }   
                                 }
                             }
@@ -569,7 +635,12 @@
                                 }
                                 if(arr!=null){
                                     for(var t=0; t<arr.length; t++){
-                                        th[i].textContent=th[i].textContent+" "+arr[t];
+                                        if(th[i].textContent==null){
+                                            console.log("it works")
+                                             th[i].textContent=arr[t]
+                                        }
+                                        else{
+                                        th[i].textContent=th[i].textContent+" "+arr[t];}
                                     }   
                                 }
                             }
@@ -577,6 +648,64 @@
                         }
 
                     }
+
+
+
+                    function setup1(){
+                        clear_th();
+                        var th=document.querySelectorAll("th");
+                        for(var i =0; i<th.length; i++){
+                            var arr=[];
+                            var ind=0;
+                            if(i==0){
+                                continue;
+                            }
+                            else if(i<=15){
+                                for (var j = 0; j < game_board[1].length; j++) {
+                                    if(j+1==game_board[1].length){
+                                        if(game_board[j][i-1]==1){
+                                            ind++;
+                                            arr.push(ind);
+                                            ind=0;}
+                                        }
+                                    else{
+                                    if(game_board[j][i-1]==1 && game_board[j+1][i-1]!=1){
+                                        ind++;
+                                        arr.push(ind);
+                                        ind=0;}
+                                    else if(game_board[j][i-1]==1){
+                                        ind++;
+                                    }
+                                }
+                            }}
+                            else{
+                                for (var j = 0; j < game_board[1].length; j++) {
+                                    if(j+1==game_board[1].length){
+                                        if(game_board[i-16][j]==1){
+                                            ind++;
+                                            arr.push(ind);
+                                            ind=0;}
+
+                                        }
+                                        else{
+                                    if(game_board[i-16][j]==1 && game_board[i-16][j+1]!=1){
+                                        ind++;
+                                        arr.push(ind);
+                                        ind=0;}
+                                    else if(game_board[i-16][j]==1){
+                                        ind++;
+                                    }
+                                        }
+                                }
+                
+                            }
+
+                        }
+
+                    }
+
+
+                    
                     function reset(){
                         var cells = document.querySelectorAll("td");
                         lives=3;
