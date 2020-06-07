@@ -106,19 +106,21 @@
                 transition-duration: 0.4s;
                 cursor: pointer;
 
-            }   
-            #buttons { display: inline-block; padding:10px; width:50%;};
-
-            #buttons .button { padding:10px;}
-
+            } 
             button:hover {
                 background-color: rgb(107, 107, 107); /* Green */
                 color: white;
             }
 
-            button.center{
-                margin: 0 auto;
-                display: block;
+            .btn{
+
+                width: 677px;
+	            height: 100px;
+                left: 0;
+                right: 0;
+                margin-top:5px;
+                margin-left: auto;
+                margin-right: auto;
 
             }
         </style>
@@ -129,6 +131,8 @@
     <body>
         <main>
             <p id="lives">Lives:</p>
+            <strong><p class="center" id="win_con"></p></strong>
+            <strong><p class="center" id="loss_con"></p></strong>
             <table id="table" class="center">
                 <tr id="rh">
                     <th></th>
@@ -421,17 +425,22 @@
                     <td id="c1515"></td>
                 </tr>
                 </table>
-                <strong><p class="center" id="win_con"></p></strong>
-                <strong><p class="center" id="loss_con"></p></strong>
+
 
                 <input type='file' id='file_up' hidden='hidden'/>
                 
-                <button type="button" id="button_up" class="center">CHOOSE file</button>
-    
-
+                <div id="btn" class="btn">
+                <!-- <button type="button" id="button_up" class="center">CHOOSE file</button>
                 <button type="button" class="center" onclick="reset()">Reset</button>
                 <button type="button" onclick="show_sol()" class="center">Show Solution</button>
-                <button type="button" onclick="reset_og()"class="center">Reset Original Puzzle</button>
+                <button type="button" onclick="reset_og()"class="center">Reset Original Puzzle</button> -->
+                <button type="button" id="button_up">CHOOSE file</button>
+                <button type="button" class="center" onclick="reset()">Reset</button>
+                <button type="button" onclick="show_sol()" >Show Solution</button>
+                <button type="button" onclick="reset_og()">Reset Original Puzzle</button>
+                </div>
+
+
                 <script type="text/javascript">
                     var temp_dat;
                     var t;
