@@ -431,19 +431,11 @@
 
                 <button type="button" class="center" onclick="reset()">Reset</button>
                 <button type="button" onclick="show_sol()" class="center">Show Solution</button>
-
+                <button type="button" onclick="reset_og()"class="center">Reset Original Puzzle</button>
                 <script type="text/javascript">
-                    btn_real=document.getElementById("button_up");
-                    btn_cl=document.getElementById('file_up');
-                    text_btn=document.getElementById("up_text");
-
-                    btn_real.addEventListener("click",function(){btn_cl.click();});
-
-                    var lives=3;
-                    liv=document.getElementById("lives")
-                    liv.textContent="Lives: "+lives;
-
-                                        game_board=[
+                    var temp_dat;
+                    var t;
+                    var og=[
                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                     [0,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
                     [0,1,1,0,1,1,1,1,1,1,1,1,1,1,0],
@@ -459,69 +451,120 @@
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
-                ]
+                ];
+                    function reset_og(){
+                        game_board=og;
+                        setup();
+                    }
                 
-                    var th=document.querySelectorAll("th");
-                    for(var i =0; i<th.length; i++){
-                        var arr=[];
-                        var ind=0;
-                        if(i==0 || i==16){
-                            continue;
-                        }
-                        else if(i<=15){
-                            for (var j = 0; j < game_board[1].length; j++) {
-                                if(j+1==game_board[1].length){
-                                    if(game_board[j][i-1]==1){
-                                        ind++;
-                                        arr.push(ind);
-                                        ind=0;}
-                                    }
-                                else{
-                                if(game_board[j][i-1]==1 && game_board[j+1][i-1]!=1){
-                                    ind++;
-                                    arr.push(ind);
-                                    ind=0;}
-                                else if(game_board[j][i-1]==1){
-                                    ind++;
-                                }
-                            }
-                        }
-                            if(ind>0){
-                                arr.push(ind);
-                            }
-                            if(arr!=null){
-                                for(var t=0; t<arr.length; t++){
-                                    th[i].textContent=th[i].textContent+" "+arr[t];
-                                }   
-                            }
-                        }
-                        else{
-                            for (var j = 0; j < game_board[1].length; j++) {
-                                if(j+1==game_board[1].length){
-                                    if(game_board[i-16][j]==1){
-                                        ind++;
-                                        arr.push(ind);
-                                        ind=0;}
+                        document.getElementById("file_up").addEventListener('change', function(){
+                        var r = new FileReader();
+                        r.onload = function(){
+                            console.log(this);
 
-                                    }
-                                    else{
-                                if(game_board[i-16][j]==1 && game_board[i-16][j+1]!=1){
-                                    ind++;
-                                    arr.push(ind);
-                                    ind=0;}
-                                else if(game_board[i-16][j]==1){
-                                    ind++;
+                            var a=this.result.split('\n');
+                            var arr=[];
+                            
+                            for(var i=0; i<a.length;i++){
+                                console.log(a[i]) 
+                                
+                                arr.push(a[i].split(/[,]/));
+                                for(var j =0; j<arr[i].length;j++){
+                                    c=arr[i][j].replace("\"","");
+                                    arr[i][j]=Number(c);
                                 }
+                                console.log(arr)
+                            }
+                            game_board=arr
+                            setup();
+                        }
+                        r.readAsText(this.files[0]);
+                        
+                    });
+
+                    btn_real=document.getElementById("button_up");
+                    btn_cl=document.getElementById('file_up');
+                    text_btn=document.getElementById("up_text");
+
+                    btn_real.addEventListener("click",function(){btn_cl.click();});
+
+                    var lives=3;
+                    liv=document.getElementById("lives")
+                    liv.textContent="Lives: "+lives;
+                    
+                    game_board=og;
+                    function clear_th(){
+                        var th=document.querySelectorAll("th");
+                        for(var i =0; i<th.length; i++){
+                           th[i].textContent='';
+                              }      
+                                  
+                    }
+                    function setup(){
+                        clear_th();
+                        var th=document.querySelectorAll("th");
+                        for(var i =0; i<th.length; i++){
+                            var arr=[];
+                            var ind=0;
+                            if(i==0){
+                                continue;
+                            }
+                            else if(i<=15){
+                                for (var j = 0; j < game_board[1].length; j++) {
+                                    if(j+1==game_board[1].length){
+                                        if(game_board[j][i-1]==1){
+                                            ind++;
+                                            arr.push(ind);
+                                            ind=0;}
+                                        }
+                                    else{
+                                    if(game_board[j][i-1]==1 && game_board[j+1][i-1]!=1){
+                                        ind++;
+                                        arr.push(ind);
+                                        ind=0;}
+                                    else if(game_board[j][i-1]==1){
+                                        ind++;
                                     }
+                                }
                             }
-                            if(ind>0){
-                                arr.push(ind);
+                                if(ind>0){
+                                    arr.push(ind);
+                                }
+                                if(arr!=null){
+                                    for(var t=0; t<arr.length; t++){
+                                        th[i].textContent=th[i].textContent+" "+arr[t];
+                                    }   
+                                }
                             }
-                            if(arr!=null){
-                                for(var t=0; t<arr.length; t++){
-                                    th[i].textContent=th[i].textContent+" "+arr[t];
-                                }   
+                            else{
+                                for (var j = 0; j < game_board[1].length; j++) {
+                                    if(j+1==game_board[1].length){
+                                        if(game_board[i-16][j]==1){
+                                            ind++;
+                                            arr.push(ind);
+                                            ind=0;}
+
+                                        }
+                                        else{
+                                    if(game_board[i-16][j]==1 && game_board[i-16][j+1]!=1){
+                                        ind++;
+                                        arr.push(ind);
+                                        ind=0;}
+                                    else if(game_board[i-16][j]==1){
+                                        ind++;
+                                    }
+                                        }
+                                }
+                                if(ind>0){
+                                    arr.push(ind);
+                                }
+                                if(arr!=null){
+                                    for(var t=0; t<arr.length; t++){
+                                        th[i].textContent=th[i].textContent+" "+arr[t];
+                                    }   
+                                }
                             }
+
                         }
 
                     }
@@ -648,6 +691,7 @@
                     function makebg(){
 
                     }
+                    setup();
                     </script>
          
                 <!-- <form action="index.html" method="post">
