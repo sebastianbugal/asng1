@@ -1,3 +1,14 @@
+Testing:
+All buttons on the webpage are functional, to test the CSV upload function, create a puzzle and download the CSV file by pressing the download button, once downloaded try and re-upload the CSV file after refreshing the page. The CSV file is simply filled with 1's for
+puzzle solution squares and 0 for errors. A new line is used at the end of each 15 character row to indicate the next line. e.g. 
+1,1,1,0,1,1,1,1,1,1,1,1,1,1,1\n.....(gride size 15*15) if you want to create your own csv please follow the csv guidlines otherwise create the csv on the website reload and test.
+
+
+All other buttons should work and are responsive and relatively self-explanatory.
+
+Files:
+the files in the folder I sent contain lang-logo.png, node.svg, and myapp.html. I am running this on the server created in the tutorial for setting up Heroku therefore, disregard lang-logo and node.svg. all code is contained in myapp.html.
+
 references:
 https://stackoverflow.com/questions/40514931/using-javascript-to-read-a-csv-txt-file-and-load-results-into-an-array
 https://www.freecodecamp.org/news/how-to-clone-an-array-in-javascript-1d3183468f6a/
