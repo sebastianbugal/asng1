@@ -50,6 +50,12 @@
                 letter-spacing: 0em;
                 color:rgb(177, 88, 37);
             }
+            #check{
+                text-align: center;
+                font-family: 'Open Sans', sans-serif;
+                letter-spacing: 0em;
+                color: rgb(65, 65, 65);
+            }
             span{
                 color: rgb(65, 65, 65);
                 font-family: 'Open Sans', sans-serif;
@@ -114,28 +120,27 @@
                 background-color: rgb(107, 107, 107); /* Green */
                 color: white;
             }
-
+            .disp{
+                display: inline-block;
+            }
             .btn{
 
-                width: 800px;
+                width: 76%;
 	            height: 100px;
                 left: 0;
                 right: 0;
                 margin-top:5px;
                 margin-left: auto;
                 margin-right: auto;
-
             }
-        </style>
-
-       
-            
+        </style>            
     </head>
     <body>
         <main>
             <p id="lives">Lives:</p>
             <strong><p class="center" id="win_con"></p></strong>
             <strong><p class="center" id="loss_con"></p></strong>
+            <strong><p class="center" id="check"></p></strong>
             <table id="table" class="center">
                 <tr id="rh">
                     <th></th>
@@ -442,7 +447,7 @@
                 <button type="button" onclick="show_sol()" >Show Solution</button>
                 <button type="button" onclick="reset_og()">Reset Original Puzzle</button>
                 <button type="button" onclick="enter_build()">Create Puzzle</button>
-                <button type="button" onclick="save_build()">Save and Play Puzzle</button>
+                <button type="button" onclick="save_build()">Play Puzzle</button>
                 
                 </div>
 
@@ -451,39 +456,25 @@
                 <script type="text/javascript">
                     var temp_dat;
                     var t;
-                    var o=[ [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
-                    var n=[
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-                    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+                    var created=false;
+                    var game_board=[
+                    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+                    [0,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
+                    [0,1,1,0,1,1,1,1,1,1,1,1,1,1,0],
+                    [0,1,0,1,1,1,1,0,0,0,0,0,0,0,0],
+                    [0,0,1,0,0,1,1,1,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,1,1,1,1,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,1,1,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+                    [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
                 ];
-                    var og=[
+                    const og=[
                     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
                     [0,1,1,1,1,0,1,0,1,1,1,1,1,1,1],
                     [0,1,1,0,1,1,1,1,1,1,1,1,1,1,0],
@@ -501,32 +492,51 @@
                     [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
                 ];
                     function save_build(){
-                        var new_board;
-                        var cells = document.querySelectorAll("td");
-                        var x;
-                        var y;
-                        var done=false;
-                        game_board=o;
-                        for (var i = 0; i < cells.length; i++) {
-                            x = Math.floor(i % 15);
-                            y = Math.floor(i / 15);
-                            if(cells[i].className=='on'){
-                                game_board[y][x]=1
+                        if(created==true){
+                            var cells = document.querySelectorAll("td");
+                            var x;
+                            var y;
+                            var done=false;
+                            
+                            for(var i=0; i<game_board[0].length;i++){
+                                game_board[i].fill(0);
                             }
+                            console.log(game_board)
+                            for (var i = 0; i < cells.length; i++) {
+                                x = Math.floor(i % 15);
+                                y = Math.floor(i / 15);
+                                if(cells[i].className=='on'){
+                                    game_board[y][x]=1
+                                }
+                            }
+                            reset();
+                            setup();
+                        }
+                        else{
+                            check=document.getElementById("check");
+                            check.textContent="You have not created a new puzzle";
+                            setTimeout(function() {check.textContent=""}, 2000);
+                        }
+ 
+                    }
+                    function enter_build(){
+                        for(var i=0; i<game_board[0].length;i++){
+                            game_board[i].fill(1);
+                        }
+                        console.log(game_board)
+                        reset();
+                        setup1();
+                        created=true;
+                        
+                    }
+                    function reset_og(){
+                        created=false;
+                        for(var i=0; i<game_board.length;i++){
+                            game_board[i]=[...og[i]];
                         }
                         reset();
                         setup();
                     }
-                    function enter_build(){
-                        game_board=n;
-                        setup1();
-                    }
-                    function reset_og(){
-                        game_board=0;
-                        setup();
-                        gameboard=n;
-                    }
-                
                         document.getElementById("file_up").addEventListener('change', function(){
                         var r = new FileReader();
                         r.onload = function(){
@@ -562,7 +572,9 @@
                     liv=document.getElementById("lives")
                     liv.textContent="Lives: "+lives;
                     
-                    game_board=og;
+                    for(var i=0; i<game_board.length;i++){
+                        game_board[i]=[...og[i]];
+                    }
                     function clear_th(){
                         var th=document.querySelectorAll("th");
                         for(var i =0; i<th.length; i++){
