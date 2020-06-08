@@ -125,7 +125,7 @@
             }
             .btn{
 
-                width: 76%;
+                width: 92%;
 	            height: 100px;
                 left: 0;
                 right: 0;
@@ -447,8 +447,8 @@
                 <button type="button" onclick="show_sol()" >Show Solution</button>
                 <button type="button" onclick="reset_og()">Reset Original Puzzle</button>
                 <button type="button" onclick="enter_build()">Create Puzzle</button>
-                <button type="button" onclick="save_build()">Play Puzzle</button>
-                <button type="button" onclick="toCsv()">Download CSV file of puzzle</button>
+                <button type="button" onclick="save_build()">Play/Save Puzzle</button>
+                <button type="button" onclick="toCsv()">Download Puzzle to CSV</button>
 
                 </div>
 
@@ -493,6 +493,7 @@
                     [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
                 ];
                     function toCsv(){
+                        save_build();
                         var csv
                         for(var i = 0; i<game_board.length; i++){
                              console.log(i);
