@@ -448,7 +448,8 @@
                 <button type="button" onclick="reset_og()">Reset Original Puzzle</button>
                 <button type="button" onclick="enter_build()">Create Puzzle</button>
                 <button type="button" onclick="save_build()">Play Puzzle</button>
-                
+                <button type="button" onclick="toCsv()">Download CSV file of puzzle</button>
+
                 </div>
 
                 
@@ -491,6 +492,26 @@
                     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
                     [0,0,0,0,1,0,0,0,0,0,0,0,0,0,0]
                 ];
+                    function toCsv(){
+                        var csv
+                        for(var i = 0; i<game_board.length; i++){
+                             console.log(i);
+                            if(i==0){
+                                csv=game_board[i].join(",")+"\n";
+                            }
+                            else if(i+1==game_board.length){
+                                console.log(i);
+                                csv+=game_board[i].join(",");
+                            }
+                            else{
+                                csv+=game_board[i].join(",")+"\n";
+                            }
+                        }
+                        var down = document.createElement('a');
+                        down.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+                        down.download='puzzle.csv';
+                        down.click();
+                    }
                     function save_build(){
                         if(created==true){
                             var cells = document.querySelectorAll("td");
@@ -501,7 +522,6 @@
                             for(var i=0; i<game_board[0].length;i++){
                                 game_board[i].fill(0);
                             }
-                            console.log(game_board)
                             for (var i = 0; i < cells.length; i++) {
                                 x = Math.floor(i % 15);
                                 y = Math.floor(i / 15);
@@ -523,13 +543,13 @@
                         for(var i=0; i<game_board[0].length;i++){
                             game_board[i].fill(1);
                         }
-                        console.log(game_board)
                         reset();
                         setup1();
                         created=true;
                         
                     }
                     function reset_og(){
+                        console.log(game_board)
                         created=false;
                         for(var i=0; i<game_board.length;i++){
                             game_board[i]=[...og[i]];
@@ -540,22 +560,23 @@
                         document.getElementById("file_up").addEventListener('change', function(){
                         var r = new FileReader();
                         r.onload = function(){
-                            console.log(this);
-
+                            console.log(this.result)
                             var a=this.result.split('\n');
+
+                            console.log(a);
                             var arr=[];
                             
                             for(var i=0; i<a.length;i++){
-                                console.log(a[i]) 
-                                
+                                if(a[i]==""){
+                                    continue;
+                                }
                                 arr.push(a[i].split(/[,]/));
                                 for(var j =0; j<arr[i].length;j++){
                                     c=arr[i][j].replace("\"","");
                                     arr[i][j]=Number(c);
                                 }
-                                console.log(arr)
                             }
-                            game_board=arr
+                            game_board=[...arr]
                             setup();
                         }
                         r.readAsText(this.files[0]);
@@ -615,7 +636,6 @@
                                 if(arr!=null){
                                     for(var t=0; t<arr.length; t++){
                                         if(th[i].textContent==null){
-                                            console.log("it works")
                                              th[i].textContent=arr[t]
                                         }
                                         else{
@@ -648,7 +668,6 @@
                                 if(arr!=null){
                                     for(var t=0; t<arr.length; t++){
                                         if(th[i].textContent==null){
-                                            console.log("it works")
                                              th[i].textContent=arr[t]
                                         }
                                         else{
@@ -817,7 +836,6 @@
                                 if(lives>1){
                                     lives--;
                                     liv.textContent="Lives: "+lives;
-                                    console.log(" sdfkiosdjfosdjfosdj")
                                 }
                                 else{
                                     lives--;
